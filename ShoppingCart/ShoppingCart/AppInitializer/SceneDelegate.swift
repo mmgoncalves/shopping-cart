@@ -18,5 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.windowScene = windowScene
         self.window = window
         
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .blue
+        let navigation = UINavigationController(rootViewController: viewController)
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigation.navigationBar.titleTextAttributes = textAttributes
+        navigation.navigationBar.largeTitleTextAttributes = textAttributes
+        navigation.navigationBar.tintColor = .white
+        
+//        navigationController = navigation
+        window.rootViewController = navigation
+        window.makeKeyAndVisible()
+        
     }
 }

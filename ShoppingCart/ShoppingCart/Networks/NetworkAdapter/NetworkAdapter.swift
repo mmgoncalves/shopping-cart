@@ -8,74 +8,55 @@
 import Foundation
 
 public protocol NetworkAdapterProtocol {
-    func request<U: Encodable>(
-        endpoint: any Endpoint,
-        params: U?,
-        completion: @escaping (Result<Data?>) -> Void
-    )
+    func request(endpoint: any Endpoint) async -> Result<Data>
 }
 
 public final class NetworkAdapter {
+    private let apiConfig: APIConfigProtocol
+    private let urlSession: URLSession
     
-    private var apiConfig: APIConfigProtocol
-    
-    init(apiConfig: APIConfigProtocol = APIConfig.shared) {
+    init(
+        apiConfig: APIConfigProtocol = APIConfig.shared,
+        urlSession: URLSession = .shared
+    ) {
         self.apiConfig = apiConfig
+        self.urlSession = urlSession
     }
 }
 
 // MARK: - Protocol implementation
 extension NetworkAdapter: NetworkAdapterProtocol {
-    
-    public func request<U: Encodable>(
-        endpoint: any Endpoint,
-        params: U?,
-        completion: @escaping(Result<Data?>) -> Void)
-    {
+    public func request(endpoint: any Endpoint) async -> Result<Data> {
         let fullPath = apiConfig.basePath + endpoint.path
-        let method: HTTPMethod = .init(rawValue: endpoint.method.rawValue)
-        var headers: HTTPHeaders?
-        if let token = apiConfig.authToken {
-            headers = HTTPHeaders.init(dictionaryLiteral: ("Authorization", token))
-        }
-        
-        AF.request(
-            fullPath,
-            method: method,
-            parameters: params,
-            encoder: JSONParameterEncoder.default,
-            headers: headers
-        )
-        .validate(statusCode: 200..<300)
-        .response { [headersHandler, completionHandler] dataResponse in
-            headersHandler(dataResponse.response?.headers)
-            completionHandler(dataResponse, completion)
+        do {
+            guard let url = URL(string: fullPath) else {
+                return .failure(NetworkError.endpointNotExist)
+            }
             
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = endpoint.method.rawValue
+            let (data, response) = try await urlSession.data(for: urlRequest)
+            return responseHandler(with: data, response: response)
+            
+        } catch {
+            debugPrint("Network error: ", error)
+            return .failure(.undefined)
         }
     }
 }
 
 // MARK: - Provate methods
 extension NetworkAdapter {
-    
-    private func completionHandler(_ dataResponse: AFDataResponse<Data?>, completion: @escaping(Result<Data?>) -> Void) {
-        switch dataResponse.result {
-        case let .success(data):
-            completion(.success(data))
+    private func responseHandler(with data: Data, response: URLResponse) -> Result<Data> {
+        guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+            return .failure(.undefined)
+        }
         
-        case let .failure(afError):
-            #if DEBUG
-                debugPrint("Request error => ", afError)
-            #endif
-            
-            let error = NetworkError(rawValue: dataResponse.response?.statusCode ?? 0) ?? .undefined
-            completion(.failure(error))
+        if (200..<300).contains(statusCode) {
+            return .success(data)
+        } else {
+            let error = NetworkError(rawValue: statusCode) ?? .undefined
+            return .failure(error)
         }
     }
-    
-//    private func headersHandler(_ headers: HTTPHeaders?) {
-//        if let token = headers?.value(for: "Authorization") {
-//            apiConfig.update(token: token)
-//        }
-//    }
 }

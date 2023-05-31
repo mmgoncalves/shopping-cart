@@ -18,37 +18,26 @@ public final class RequestAPIClient {
 
 // MARK: - Protocol implementation
 extension RequestAPIClient: APIClient {
-    
-    public func request<T, U>(_ endpoint: any Endpoint, params: U?, completion: @escaping (Result<T>) -> Void) where T : Decodable, U: Encodable {
-        networkAdapter.request(endpoint: endpoint, params: params) { [weak self] result in
-            switch result {
-            case let .success(data):
-                self?.decodeObject(from: data, completion: completion)
-            
-            case let .failure(error):
-                completion(.failure(error))
-            }
+    public func request<T>(_ endpoint: any Endpoint) async -> Result<T> where T : Decodable {
+        let result = await networkAdapter.request(endpoint: endpoint)
+        switch result {
+        case .success(let data):
+            return decodeObject(from: data)
+        case .failure(let networkError):
+            return .failure(networkError)
         }
     }
 }
 
 // MARK: - Provate methods
 extension RequestAPIClient {
-    
-    private func decodeObject<T>(from data: Data?, completion: @escaping (Result<T>) -> Void) where T: Decodable {
-        guard let data else {
-            completion(.failure(.undefined))
-            return
-        }
-        
+    private func decodeObject<T>(from data: Data) -> Result<T> where T: Decodable {
         do {
             let decoded = try JSONDecoder().decode(T.self, from: data)
-            completion(.success(decoded))
+            return .success(decoded)
         } catch {
-            #if DEBUG
-                debugPrint("Parser error => ", error)
-            #endif
-            completion(.failure(.parse))
+            debugPrint("Parse error => ", error)
+            return .failure(.parse)
         }
     }
 }

@@ -11,4 +11,5 @@ public enum NetworkError: Int, Error {
     case serverError = 500
     case undefined = 0
     case parse = 9999
+    case endpointNotExist = -1
 }

@@ -13,5 +13,5 @@ public enum Result<T> {
 }
 
 public protocol APIClient {
-    func request<T: Decodable, U: Encodable>(_ endpoint: any Endpoint, params: U?, completion: @escaping (Result<T>) -> Void)
+    func request<T: Decodable>(_ endpoint: any Endpoint) async -> Result<T>
 }
