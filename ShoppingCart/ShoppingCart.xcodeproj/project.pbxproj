@@ -11,13 +11,15 @@
 		C378EE3C2A26A2FD00321681 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE3B2A26A2FD00321681 /* SceneDelegate.swift */; };
 		C378EE432A26A2FE00321681 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C378EE422A26A2FE00321681 /* Assets.xcassets */; };
 		C378EE462A26A2FE00321681 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C378EE442A26A2FE00321681 /* LaunchScreen.storyboard */; };
-		C378EE512A26A2FE00321681 /* ShoppingCartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE502A26A2FE00321681 /* ShoppingCartTests.swift */; };
 		C378EE722A26AA4B00321681 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE712A26AA4B00321681 /* APIConfig.swift */; };
 		C378EE742A26AAEE00321681 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE732A26AAEE00321681 /* APIClient.swift */; };
 		C378EE762A26AB2300321681 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE752A26AB2300321681 /* NetworkError.swift */; };
 		C378EE782A26AB5200321681 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE772A26AB5200321681 /* Endpoint.swift */; };
 		C378EE7A2A26ABA500321681 /* RequestAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE792A26ABA500321681 /* RequestAPIClient.swift */; };
 		C378EE7D2A26AC1400321681 /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE7C2A26AC1400321681 /* NetworkAdapter.swift */; };
+		C378EE812A27F47A00321681 /* RequestAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE802A27F47A00321681 /* RequestAPIClientTests.swift */; };
+		C378EE842A27F5A600321681 /* EndpointMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE832A27F5A600321681 /* EndpointMock.swift */; };
+		C378EE862A27F9EA00321681 /* NetworkAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C378EE852A27F9EA00321681 /* NetworkAdapterMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,13 +40,15 @@
 		C378EE452A26A2FE00321681 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C378EE472A26A2FE00321681 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C378EE4C2A26A2FE00321681 /* ShoppingCartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppingCartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C378EE502A26A2FE00321681 /* ShoppingCartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartTests.swift; sourceTree = "<group>"; };
 		C378EE712A26AA4B00321681 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		C378EE732A26AAEE00321681 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		C378EE752A26AB2300321681 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		C378EE772A26AB5200321681 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		C378EE792A26ABA500321681 /* RequestAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPIClient.swift; sourceTree = "<group>"; };
 		C378EE7C2A26AC1400321681 /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
+		C378EE802A27F47A00321681 /* RequestAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPIClientTests.swift; sourceTree = "<group>"; };
+		C378EE832A27F5A600321681 /* EndpointMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointMock.swift; sourceTree = "<group>"; };
+		C378EE852A27F9EA00321681 /* NetworkAdapterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapterMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +102,7 @@
 		C378EE4F2A26A2FE00321681 /* ShoppingCartTests */ = {
 			isa = PBXGroup;
 			children = (
-				C378EE502A26A2FE00321681 /* ShoppingCartTests.swift */,
+				C378EE7E2A27F3FE00321681 /* Networks */,
 			);
 			path = ShoppingCartTests;
 			sourceTree = "<group>";
@@ -171,6 +175,32 @@
 				C378EE7C2A26AC1400321681 /* NetworkAdapter.swift */,
 			);
 			path = NetworkAdapter;
+			sourceTree = "<group>";
+		};
+		C378EE7E2A27F3FE00321681 /* Networks */ = {
+			isa = PBXGroup;
+			children = (
+				C378EE7F2A27F45700321681 /* APIClient */,
+			);
+			path = Networks;
+			sourceTree = "<group>";
+		};
+		C378EE7F2A27F45700321681 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				C378EE822A27F59A00321681 /* Mocks */,
+				C378EE802A27F47A00321681 /* RequestAPIClientTests.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		C378EE822A27F59A00321681 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C378EE832A27F5A600321681 /* EndpointMock.swift */,
+				C378EE852A27F9EA00321681 /* NetworkAdapterMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +318,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C378EE512A26A2FE00321681 /* ShoppingCartTests.swift in Sources */,
+				C378EE842A27F5A600321681 /* EndpointMock.swift in Sources */,
+				C378EE812A27F47A00321681 /* RequestAPIClientTests.swift in Sources */,
+				C378EE862A27F9EA00321681 /* NetworkAdapterMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
