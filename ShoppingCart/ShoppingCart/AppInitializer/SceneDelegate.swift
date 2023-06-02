@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var navigationController: UINavigationController?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.windowScene = windowScene
         self.window = window
         
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .blue
+        let homeFactory = HomeFactory()
+        let viewController = homeFactory.build()
         let navigation = UINavigationController(rootViewController: viewController)
         
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigation.navigationBar.largeTitleTextAttributes = textAttributes
         navigation.navigationBar.tintColor = .white
         
-//        navigationController = navigation
+        navigationController = navigation
         window.rootViewController = navigation
         window.makeKeyAndVisible()
         
