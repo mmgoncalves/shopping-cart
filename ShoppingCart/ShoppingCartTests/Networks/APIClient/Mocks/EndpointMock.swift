@@ -9,12 +9,8 @@
 import Foundation
 
 struct EndpointMock: Endpoint {
-    typealias Parameters = ModelMock
-    
     var path: String = "/path"
     var method: RequestMethod = .get
-    var parameters: ModelMock?
-    var queryItems: [URLQueryItem]?
 }
 
 struct ModelMock: Codable {

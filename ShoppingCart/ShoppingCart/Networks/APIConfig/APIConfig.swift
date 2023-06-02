@@ -10,14 +10,7 @@ public protocol APIConfigProtocol {
 }
 
 public final class APIConfig: APIConfigProtocol {
-    public var basePath: String {
-//        /59b6a65a0f0000e90471257da
-        "https://www.mocky.io/v2"
-    }
-    
-    public static var shared: APIConfig {
-        .init()
-    }
-    
+    public var basePath = "https://www.mocky.io/v2"
+    public static var shared: APIConfig = .init()
     private init() { }
 }
