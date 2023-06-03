@@ -24,6 +24,8 @@
 		C3B298972A2A30650065B4AD /* DiscountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298962A2A30650065B4AD /* DiscountView.swift */; };
 		C3B2989A2A2A325E0065B4AD /* AmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298992A2A325E0065B4AD /* AmountView.swift */; };
 		C3B2989C2A2A4ACB0065B4AD /* UIImageView+LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2989B2A2A4ACB0065B4AD /* UIImageView+LoadImage.swift */; };
+		C3B2989F2A2AB88B0065B4AD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2989E2A2AB88B0065B4AD /* LoadingView.swift */; };
+		C3B298A12A2ABAD20065B4AD /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298A02A2ABAD20065B4AD /* UIViewController+Loading.swift */; };
 		C3D62EF22A280C2200E74D92 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF12A280C2200E74D92 /* Product.swift */; };
 		C3D62EF42A280ED500E74D92 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF32A280ED500E74D92 /* ShoppingCart.swift */; };
 		C3D62EF62A291D0500E74D92 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF52A291D0500E74D92 /* HomeViewController.swift */; };
@@ -68,6 +70,8 @@
 		C3B298962A2A30650065B4AD /* DiscountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountView.swift; sourceTree = "<group>"; };
 		C3B298992A2A325E0065B4AD /* AmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountView.swift; sourceTree = "<group>"; };
 		C3B2989B2A2A4ACB0065B4AD /* UIImageView+LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LoadImage.swift"; sourceTree = "<group>"; };
+		C3B2989E2A2AB88B0065B4AD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		C3B298A02A2ABAD20065B4AD /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
 		C3D62EF12A280C2200E74D92 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C3D62EF32A280ED500E74D92 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3D62EF52A291D0500E74D92 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			children = (
 				C3B298982A2A32500065B4AD /* AmountView */,
 				C3B298952A2A30560065B4AD /* DiscountView */,
+				C3B2989D2A2AB87A0065B4AD /* LoadingView */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 			children = (
 				C39A69162A297CB000C64D7C /* UIFont+Extension.swift */,
 				C3B2989B2A2A4ACB0065B4AD /* UIImageView+LoadImage.swift */,
+				C3B298A02A2ABAD20065B4AD /* UIViewController+Loading.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -261,6 +267,14 @@
 				C3B298992A2A325E0065B4AD /* AmountView.swift */,
 			);
 			path = AmountView;
+			sourceTree = "<group>";
+		};
+		C3B2989D2A2AB87A0065B4AD /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				C3B2989E2A2AB88B0065B4AD /* LoadingView.swift */,
+			);
+			path = LoadingView;
 			sourceTree = "<group>";
 		};
 		C3D62EEA2A2809FE00E74D92 /* Home */ = {
@@ -476,6 +490,7 @@
 				C378EE3A2A26A2FD00321681 /* AppDelegate.swift in Sources */,
 				C378EE7A2A26ABA500321681 /* RequestAPIClient.swift in Sources */,
 				C3D62F0A2A2948D300E74D92 /* HomeCollectionViewCell.swift in Sources */,
+				C3B298A12A2ABAD20065B4AD /* UIViewController+Loading.swift in Sources */,
 				C3D62EF22A280C2200E74D92 /* Product.swift in Sources */,
 				C3D62EF82A291D1300E74D92 /* HomeInteractor.swift in Sources */,
 				C378EE7D2A26AC1400321681 /* NetworkAdapter.swift in Sources */,
@@ -490,6 +505,7 @@
 				C378EE742A26AAEE00321681 /* APIClient.swift in Sources */,
 				C378EE782A26AB5200321681 /* Endpoint.swift in Sources */,
 				C378EE762A26AB2300321681 /* NetworkError.swift in Sources */,
+				C3B2989F2A2AB88B0065B4AD /* LoadingView.swift in Sources */,
 				C3D62F022A291DCF00E74D92 /* ViewCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
