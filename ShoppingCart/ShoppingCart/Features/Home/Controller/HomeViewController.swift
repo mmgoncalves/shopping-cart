@@ -95,11 +95,11 @@ final class HomeViewController: UIViewController {
     override func loadView() {
         super.loadView()
         setupView()
+        startLoading()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         interactor?.viewDidLoad()
     }
     
@@ -117,6 +117,7 @@ extension HomeViewController: HomeDisplayLogic {
     func show(_ products: [Product]) {
         productList = products
         collectionView.reloadData()
+        stopLoading()
     }
 }
 
@@ -179,7 +180,6 @@ extension HomeViewController: ViewCode {
         )
 
         collectionView.dataSource = self
-        collectionView.delegate = self
     }
 }
 
@@ -198,9 +198,5 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let product = productList[indexPath.row]
         homeCollection.setupCell(with: product)
         return homeCollection
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Did Select Item")
     }
 }
