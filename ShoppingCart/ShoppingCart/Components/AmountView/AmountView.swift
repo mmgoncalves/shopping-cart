@@ -27,6 +27,7 @@ final class AmountView: UIView {
     private lazy var actualPriceLabel: UILabel = {
         let label = UILabel()
         label.font = .defaultFont()
+        label.textColor = .darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

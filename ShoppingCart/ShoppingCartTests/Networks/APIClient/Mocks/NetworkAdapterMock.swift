@@ -11,7 +11,7 @@ import Foundation
 final class NetworkAdapterMock: NetworkAdapterProtocol {
     var result: Result<Data>?
     
-    func request(endpoint: any Endpoint) async -> ShoppingCart.Result<Data> {
+    func request(endpoint: any Endpoint) async -> Result<Data> {
         if let result {
             return result
         } else {

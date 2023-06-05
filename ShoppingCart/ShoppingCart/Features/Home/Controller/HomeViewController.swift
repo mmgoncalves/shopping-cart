@@ -9,6 +9,9 @@ import UIKit
 
 protocol HomeDisplayLogic: AnyObject {
     func show(_ products: [Product])
+    func updateCartQuantity(with quantity: Int)
+    func startLoading()
+    func stopLoading()
 }
 
 final class HomeViewController: UIViewController {
@@ -16,6 +19,7 @@ final class HomeViewController: UIViewController {
     // MARK: - Properties
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
+        scroll.showsVerticalScrollIndicator = false
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
@@ -52,12 +56,20 @@ final class HomeViewController: UIViewController {
         return promotionFilter
     }()
     
+    private lazy var cartView: CartView = {
+        let cart = CartView()
+        cart.translatesAutoresizingMaskIntoConstraints = false
+        return cart
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 5
         flowLayout.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 20)
-        flowLayout.itemSize = CGSize(width: 160, height: 300)
+        flowLayout.itemSize = CGSize(width: 170, height: 300)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collection.backgroundColor = .white
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
@@ -94,8 +106,8 @@ final class HomeViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         setupView()
-        startLoading()
     }
     
     override func viewDidLoad() {
@@ -117,7 +129,40 @@ extension HomeViewController: HomeDisplayLogic {
     func show(_ products: [Product]) {
         productList = products
         collectionView.reloadData()
-        stopLoading()
+    }
+    
+    func updateCartQuantity(with quantity: Int) {
+        cartView.update(numberOfProducts: quantity)
+    }
+}
+
+extension HomeViewController: HomeCollectionViewCellDelegate {
+    func didAdd(_ product: Product) {
+        router?.showSizePicker(with: product, delegate: self)
+    }
+}
+
+extension HomeViewController: SizePickerDelegate {
+    func didSelect(_ size: Size, from product: Product) {
+        interactor?.didAdd(product, with: size)
+    }
+}
+
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        productList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let homeCollection = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell else {
+            let cell = UICollectionViewCell()
+            cell.backgroundColor = .blue
+            return cell
+        }
+        
+        let product = productList[indexPath.row]
+        homeCollection.setupCell(with: product, delegate: self)
+        return homeCollection
     }
 }
 
@@ -128,6 +173,7 @@ extension HomeViewController: ViewCode {
         contentView.addSubview(titleLabel)
         contentView.addSubview(promotionFilterLabel)
         contentView.addSubview(promotionFilterSwitch)
+        contentView.addSubview(cartView)
         contentView.addSubview(collectionView)
         contentView.addSubview(payButton)
     }
@@ -155,6 +201,11 @@ extension HomeViewController: ViewCode {
             promotionFilterSwitch.centerYAnchor.constraint(equalTo: promotionFilterLabel.centerYAnchor),
             promotionFilterSwitch.leadingAnchor.constraint(equalTo: promotionFilterLabel.trailingAnchor, constant: 10),
             
+            cartView.centerYAnchor.constraint(equalTo: promotionFilterLabel.centerYAnchor),
+            cartView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            cartView.heightAnchor.constraint(equalToConstant: 33),
+            cartView.widthAnchor.constraint(equalToConstant: 40),
+            
             collectionView.topAnchor.constraint(equalTo: promotionFilterLabel.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -180,23 +231,5 @@ extension HomeViewController: ViewCode {
         )
 
         collectionView.dataSource = self
-    }
-}
-
-extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        productList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let homeCollection = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell else {
-            let cell = UICollectionViewCell()
-            cell.backgroundColor = .blue
-            return cell
-        }
-        
-        let product = productList[indexPath.row]
-        homeCollection.setupCell(with: product)
-        return homeCollection
     }
 }

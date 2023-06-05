@@ -19,8 +19,9 @@ struct Product: Codable {
     let discountPercentage: String
     let image: String
     let sizes: [Size]
-    var id: UUID {
-        UUID()
+    
+    var onlyAvailable: [Size] {
+        sizes.filter({ $0.available })
     }
     
     enum CodingKeys: String, CodingKey {
@@ -34,8 +35,9 @@ struct Product: Codable {
     }
 }
 
-struct Size: Codable {
-    let available: Bool
-    let size: String
-    let sku: String
+extension Product: Hashable {
+    func hash(into hasher: inout Hasher) {
+        let combine = "\(name.hashValue)\(image.hashValue)"
+        hasher.combine(combine)
+    }
 }
