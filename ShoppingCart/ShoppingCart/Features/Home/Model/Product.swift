@@ -23,6 +23,10 @@ struct Product: Codable {
         UUID()
     }
     
+    var onlyAvailable: [Size] {
+        sizes.filter({ $0.available })
+    }
+    
     enum CodingKeys: String, CodingKey {
         case name
         case onSale = "on_sale"
@@ -32,10 +36,23 @@ struct Product: Codable {
         case image
         case sizes
     }
+    
+}
+
+extension Product: Equatable {
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 struct Size: Codable {
     let available: Bool
     let size: String
     let sku: String
+}
+
+extension Size: Equatable {
+    static func ==(lhs: Size, rhs: Size) -> Bool {
+        lhs.sku == rhs.sku && lhs.size == rhs.size
+    }
 }

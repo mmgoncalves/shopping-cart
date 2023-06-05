@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HomeCollectionViewCellDelegate: AnyObject {
+    func didAdd(_ product: Product)
+}
+
 final class HomeCollectionViewCell: UICollectionViewCell {
     static let identifier = "HomeCollectionViewCell"
     
@@ -58,17 +62,31 @@ final class HomeCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    private lazy var sizeListView: SizeListView = {
+        let view = SizeListView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var product: Product?
+    private var selectedSize: Size?
+    private weak var delegate: HomeCollectionViewCellDelegate?
+    
     override func prepareForReuse() {
+        product = nil
         titleLabel.text = ""
         imageView.image = imagePlaceholder
         discountView.isHidden = true
         amountView.isHidden = true
         discountView.prepareForReuse()
         amountView.prepareForReuse()
+        sizeListView.prepareForReuse()
         super.prepareForReuse()
     }
     
-    func setupCell(with product: Product) {
+    func setupCell(with product: Product, delegate: HomeCollectionViewCellDelegate) {
+        self.product = product
+        self.delegate = delegate
         titleLabel.text = product.name
         imageView.loadImage(from: product.image)
         discountView.isHidden = !product.onSale
@@ -81,13 +99,14 @@ final class HomeCollectionViewCell: UICollectionViewCell {
             actualPrice: product.actualPrice,
             onSale: product.onSale
         )
+        sizeListView.setup(with: product.onlyAvailable)
         setupView()
     }
     
     @objc private func addButtomDidTap(_ sender: AnyObject) {
-        print("add button did tap =>")
+        guard let product else { return }
+        delegate?.didAdd(product)
     }
-    
 }
 
 extension HomeCollectionViewCell: ViewCode {
@@ -97,6 +116,7 @@ extension HomeCollectionViewCell: ViewCode {
         contentView.addSubview(discountView)
         contentView.addSubview(addItemButton)
         contentView.addSubview(amountView)
+        contentView.addSubview(sizeListView)
     }
     
     func setupConstraints() {
@@ -111,19 +131,24 @@ extension HomeCollectionViewCell: ViewCode {
             
             discountView.topAnchor.constraint(greaterThanOrEqualTo: imageView.bottomAnchor, constant: 10),
             discountView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            discountView.centerYAnchor.constraint(equalTo: addItemButton.centerYAnchor),
             
             addItemButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            addItemButton.centerYAnchor.constraint(equalTo: discountView.centerYAnchor),
+            addItemButton.topAnchor.constraint(greaterThanOrEqualTo: imageView.bottomAnchor, constant: 10),
             addItemButton.widthAnchor.constraint(equalToConstant: 40),
             addItemButton.heightAnchor.constraint(equalToConstant: 40),
             
             amountView.topAnchor.constraint(equalTo: addItemButton.bottomAnchor),
             amountView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             amountView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            amountView.heightAnchor.constraint(equalToConstant: 33),
+            
+            sizeListView.topAnchor.constraint(equalTo: amountView.bottomAnchor, constant: 6),
+            sizeListView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            sizeListView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            sizeListView.heightAnchor.constraint(equalToConstant: 12),
         ])
         
-        let height = amountView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+        let height = sizeListView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6)
         height.priority = .defaultHigh
         height.isActive = true
     }

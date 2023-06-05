@@ -7,12 +7,14 @@
 
 protocol HomeBusinessLogic {
     func viewDidLoad()
+    func didAdd(_ product: Product, with size: Size)
 }
 
 final class HomeInteractor: HomeBusinessLogic {
     private let presenter: HomePresentationLogic
     private let service: ProductServiceProtocol
     private var products: [Product] = []
+    private var cart = ShoppingCart(products: [])
     
     init(
         presenter: HomePresentationLogic,
@@ -23,6 +25,7 @@ final class HomeInteractor: HomeBusinessLogic {
     }
     
     func viewDidLoad()  {
+        presenter.viewDidLoad()
         Task {
             let result = await service.getProductList()
             switch result {
@@ -35,5 +38,10 @@ final class HomeInteractor: HomeBusinessLogic {
                 print("Network Error: ", networkError) // TODO: The failure flow must be implemented next sprint
             }
         }
+    }
+    
+    func didAdd(_ product: Product, with size: Size) {
+        cart.add(product, with: size)
+        presenter.updateCartQuantity(with: cart.quantity)
     }
 }

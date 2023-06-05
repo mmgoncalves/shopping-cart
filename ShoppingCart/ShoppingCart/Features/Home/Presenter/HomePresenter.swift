@@ -6,7 +6,9 @@
 //
 
 protocol HomePresentationLogic {
+    func viewDidLoad()
     func show(_ products: [Product])
+    func updateCartQuantity(with quantity: Int)
 }
 
 final class HomePresenter: HomePresentationLogic {
@@ -16,7 +18,16 @@ final class HomePresenter: HomePresentationLogic {
         self.view = view
     }
     
+    func viewDidLoad() {
+        view?.startLoading()
+    }
+    
     func show(_ products: [Product]) {
         view?.show(products)
+        view?.stopLoading()
+    }
+    
+    func updateCartQuantity(with quantity: Int) {
+        view?.updateCartQuantity(with: quantity)
     }
 }

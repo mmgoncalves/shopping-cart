@@ -26,6 +26,9 @@
 		C3B2989C2A2A4ACB0065B4AD /* UIImageView+LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2989B2A2A4ACB0065B4AD /* UIImageView+LoadImage.swift */; };
 		C3B2989F2A2AB88B0065B4AD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2989E2A2AB88B0065B4AD /* LoadingView.swift */; };
 		C3B298A12A2ABAD20065B4AD /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298A02A2ABAD20065B4AD /* UIViewController+Loading.swift */; };
+		C3B298A42A2B68090065B4AD /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298A32A2B68090065B4AD /* CartView.swift */; };
+		C3B298A92A2BB2F90065B4AD /* SizeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298A82A2BB2F90065B4AD /* SizeListView.swift */; };
+		C3B298AC2A2E25370065B4AD /* SizePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298AB2A2E25370065B4AD /* SizePickerViewController.swift */; };
 		C3D62EF22A280C2200E74D92 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF12A280C2200E74D92 /* Product.swift */; };
 		C3D62EF42A280ED500E74D92 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF32A280ED500E74D92 /* ShoppingCart.swift */; };
 		C3D62EF62A291D0500E74D92 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF52A291D0500E74D92 /* HomeViewController.swift */; };
@@ -72,6 +75,9 @@
 		C3B2989B2A2A4ACB0065B4AD /* UIImageView+LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LoadImage.swift"; sourceTree = "<group>"; };
 		C3B2989E2A2AB88B0065B4AD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C3B298A02A2ABAD20065B4AD /* UIViewController+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
+		C3B298A32A2B68090065B4AD /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		C3B298A82A2BB2F90065B4AD /* SizeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeListView.swift; sourceTree = "<group>"; };
+		C3B298AB2A2E25370065B4AD /* SizePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePickerViewController.swift; sourceTree = "<group>"; };
 		C3D62EF12A280C2200E74D92 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C3D62EF32A280ED500E74D92 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3D62EF52A291D0500E74D92 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -178,8 +184,11 @@
 			isa = PBXGroup;
 			children = (
 				C3B298982A2A32500065B4AD /* AmountView */,
+				C3B298A22A2B67F40065B4AD /* CartView */,
 				C3B298952A2A30560065B4AD /* DiscountView */,
 				C3B2989D2A2AB87A0065B4AD /* LoadingView */,
+				C3B298A52A2BA1F40065B4AD /* SizeListView */,
+				C3B298AA2A2E251F0065B4AD /* SizerPickerView */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -275,6 +284,30 @@
 				C3B2989E2A2AB88B0065B4AD /* LoadingView.swift */,
 			);
 			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		C3B298A22A2B67F40065B4AD /* CartView */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298A32A2B68090065B4AD /* CartView.swift */,
+			);
+			path = CartView;
+			sourceTree = "<group>";
+		};
+		C3B298A52A2BA1F40065B4AD /* SizeListView */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298A82A2BB2F90065B4AD /* SizeListView.swift */,
+			);
+			path = SizeListView;
+			sourceTree = "<group>";
+		};
+		C3B298AA2A2E251F0065B4AD /* SizerPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298AB2A2E25370065B4AD /* SizePickerViewController.swift */,
+			);
+			path = SizerPickerView;
 			sourceTree = "<group>";
 		};
 		C3D62EEA2A2809FE00E74D92 /* Home */ = {
@@ -484,6 +517,7 @@
 			files = (
 				C39A69172A297CB000C64D7C /* UIFont+Extension.swift in Sources */,
 				C3D62F082A293BAE00E74D92 /* ProductServiceEndpoint.swift in Sources */,
+				C3B298A42A2B68090065B4AD /* CartView.swift in Sources */,
 				C3D62F0D2A29691D00E74D92 /* HomeFactory.swift in Sources */,
 				C3B2989A2A2A325E0065B4AD /* AmountView.swift in Sources */,
 				C3B298972A2A30650065B4AD /* DiscountView.swift in Sources */,
@@ -495,8 +529,10 @@
 				C3D62EF82A291D1300E74D92 /* HomeInteractor.swift in Sources */,
 				C378EE7D2A26AC1400321681 /* NetworkAdapter.swift in Sources */,
 				C3D62F052A293B8600E74D92 /* ProductService.swift in Sources */,
+				C3B298A92A2BB2F90065B4AD /* SizeListView.swift in Sources */,
 				C378EE3C2A26A2FD00321681 /* SceneDelegate.swift in Sources */,
 				C3D62EF42A280ED500E74D92 /* ShoppingCart.swift in Sources */,
+				C3B298AC2A2E25370065B4AD /* SizePickerViewController.swift in Sources */,
 				C378EE722A26AA4B00321681 /* APIConfig.swift in Sources */,
 				C3B2989C2A2A4ACB0065B4AD /* UIImageView+LoadImage.swift in Sources */,
 				C3D62EF62A291D0500E74D92 /* HomeViewController.swift in Sources */,
@@ -663,6 +699,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2J623KG2G3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShoppingCart/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -689,6 +726,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2J623KG2G3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShoppingCart/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
