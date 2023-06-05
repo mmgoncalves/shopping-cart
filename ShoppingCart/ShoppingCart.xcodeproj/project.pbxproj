@@ -29,6 +29,14 @@
 		C3B298A42A2B68090065B4AD /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298A32A2B68090065B4AD /* CartView.swift */; };
 		C3B298A92A2BB2F90065B4AD /* SizeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298A82A2BB2F90065B4AD /* SizeListView.swift */; };
 		C3B298AC2A2E25370065B4AD /* SizePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298AB2A2E25370065B4AD /* SizePickerViewController.swift */; };
+		C3B298B22A2E459F0065B4AD /* HomeInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298B12A2E459F0065B4AD /* HomeInteractorTests.swift */; };
+		C3B298B42A2E45E50065B4AD /* ProductServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298B32A2E45E50065B4AD /* ProductServiceMock.swift */; };
+		C3B298B72A2E46AF0065B4AD /* HomePresentationLogicMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298B62A2E46AF0065B4AD /* HomePresentationLogicMock.swift */; };
+		C3B298BB2A2E483B0065B4AD /* Product+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298BA2A2E483B0065B4AD /* Product+Mock.swift */; };
+		C3B298BD2A2E486D0065B4AD /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298BC2A2E486D0065B4AD /* Size.swift */; };
+		C3B298BF2A2E48880065B4AD /* Size+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298BE2A2E48880065B4AD /* Size+Mock.swift */; };
+		C3B298C12A2E4B260065B4AD /* ShoppingCartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298C02A2E4B260065B4AD /* ShoppingCartTests.swift */; };
+		C3B298C32A2E76210065B4AD /* CartProduct+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B298C22A2E76210065B4AD /* CartProduct+Mock.swift */; };
 		C3D62EF22A280C2200E74D92 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF12A280C2200E74D92 /* Product.swift */; };
 		C3D62EF42A280ED500E74D92 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF32A280ED500E74D92 /* ShoppingCart.swift */; };
 		C3D62EF62A291D0500E74D92 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D62EF52A291D0500E74D92 /* HomeViewController.swift */; };
@@ -78,6 +86,14 @@
 		C3B298A32A2B68090065B4AD /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		C3B298A82A2BB2F90065B4AD /* SizeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeListView.swift; sourceTree = "<group>"; };
 		C3B298AB2A2E25370065B4AD /* SizePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePickerViewController.swift; sourceTree = "<group>"; };
+		C3B298B12A2E459F0065B4AD /* HomeInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractorTests.swift; sourceTree = "<group>"; };
+		C3B298B32A2E45E50065B4AD /* ProductServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceMock.swift; sourceTree = "<group>"; };
+		C3B298B62A2E46AF0065B4AD /* HomePresentationLogicMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresentationLogicMock.swift; sourceTree = "<group>"; };
+		C3B298BA2A2E483B0065B4AD /* Product+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+Mock.swift"; sourceTree = "<group>"; };
+		C3B298BC2A2E486D0065B4AD /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		C3B298BE2A2E48880065B4AD /* Size+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Size+Mock.swift"; sourceTree = "<group>"; };
+		C3B298C02A2E4B260065B4AD /* ShoppingCartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartTests.swift; sourceTree = "<group>"; };
+		C3B298C22A2E76210065B4AD /* CartProduct+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CartProduct+Mock.swift"; sourceTree = "<group>"; };
 		C3D62EF12A280C2200E74D92 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C3D62EF32A280ED500E74D92 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		C3D62EF52A291D0500E74D92 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +160,7 @@
 		C378EE4F2A26A2FE00321681 /* ShoppingCartTests */ = {
 			isa = PBXGroup;
 			children = (
+				C3B298AD2A2E45790065B4AD /* Features */,
 				C378EE7E2A27F3FE00321681 /* Networks */,
 			);
 			path = ShoppingCartTests;
@@ -310,6 +327,60 @@
 			path = SizerPickerView;
 			sourceTree = "<group>";
 		};
+		C3B298AD2A2E45790065B4AD /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298AE2A2E45800065B4AD /* Home */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		C3B298AE2A2E45800065B4AD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298B82A2E482A0065B4AD /* Model */,
+				C3B298AF2A2E45840065B4AD /* Interactor */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C3B298AF2A2E45840065B4AD /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298B02A2E458A0065B4AD /* Mocks */,
+				C3B298B12A2E459F0065B4AD /* HomeInteractorTests.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		C3B298B02A2E458A0065B4AD /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298B32A2E45E50065B4AD /* ProductServiceMock.swift */,
+				C3B298B62A2E46AF0065B4AD /* HomePresentationLogicMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		C3B298B82A2E482A0065B4AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298B92A2E482E0065B4AD /* Mocks */,
+				C3B298C02A2E4B260065B4AD /* ShoppingCartTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3B298B92A2E482E0065B4AD /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C3B298BA2A2E483B0065B4AD /* Product+Mock.swift */,
+				C3B298BE2A2E48880065B4AD /* Size+Mock.swift */,
+				C3B298C22A2E76210065B4AD /* CartProduct+Mock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		C3D62EEA2A2809FE00E74D92 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +440,7 @@
 			children = (
 				C3D62EF12A280C2200E74D92 /* Product.swift */,
 				C3D62EF32A280ED500E74D92 /* ShoppingCart.swift */,
+				C3B298BC2A2E486D0065B4AD /* Size.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -526,6 +598,7 @@
 				C3D62F0A2A2948D300E74D92 /* HomeCollectionViewCell.swift in Sources */,
 				C3B298A12A2ABAD20065B4AD /* UIViewController+Loading.swift in Sources */,
 				C3D62EF22A280C2200E74D92 /* Product.swift in Sources */,
+				C3B298BD2A2E486D0065B4AD /* Size.swift in Sources */,
 				C3D62EF82A291D1300E74D92 /* HomeInteractor.swift in Sources */,
 				C378EE7D2A26AC1400321681 /* NetworkAdapter.swift in Sources */,
 				C3D62F052A293B8600E74D92 /* ProductService.swift in Sources */,
@@ -552,7 +625,14 @@
 			files = (
 				C378EE842A27F5A600321681 /* EndpointMock.swift in Sources */,
 				C378EE812A27F47A00321681 /* RequestAPIClientTests.swift in Sources */,
+				C3B298BF2A2E48880065B4AD /* Size+Mock.swift in Sources */,
+				C3B298C12A2E4B260065B4AD /* ShoppingCartTests.swift in Sources */,
 				C378EE862A27F9EA00321681 /* NetworkAdapterMock.swift in Sources */,
+				C3B298B22A2E459F0065B4AD /* HomeInteractorTests.swift in Sources */,
+				C3B298B42A2E45E50065B4AD /* ProductServiceMock.swift in Sources */,
+				C3B298B72A2E46AF0065B4AD /* HomePresentationLogicMock.swift in Sources */,
+				C3B298BB2A2E483B0065B4AD /* Product+Mock.swift in Sources */,
+				C3B298C32A2E76210065B4AD /* CartProduct+Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +833,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2J623KG2G3;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
@@ -772,6 +853,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2J623KG2G3;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;

@@ -14,7 +14,7 @@ final class HomeInteractor: HomeBusinessLogic {
     private let presenter: HomePresentationLogic
     private let service: ProductServiceProtocol
     private var products: [Product] = []
-    private var cart = ShoppingCart(products: [])
+    private(set) var cart = ShoppingCart(products: [:])
     
     init(
         presenter: HomePresentationLogic,

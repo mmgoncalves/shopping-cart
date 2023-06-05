@@ -90,6 +90,11 @@ extension SizePickerViewController: UIPickerViewDataSource, UIPickerViewDelegate
         let row = sizes[row]
         return row.size
     }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let row = sizes[row]
+        return NSAttributedString(string: row.size, attributes: [.foregroundColor : UIColor.darkGray])
+    }
 }
 
 extension SizePickerViewController: ViewCode {
@@ -106,8 +111,8 @@ extension SizePickerViewController: ViewCode {
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             sizePickerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            sizePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            sizePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            sizePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            sizePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             confirmButton.topAnchor.constraint(equalTo: sizePickerView.bottomAnchor, constant: 10),
             confirmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),

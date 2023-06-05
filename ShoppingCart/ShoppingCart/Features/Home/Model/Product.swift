@@ -19,9 +19,6 @@ struct Product: Codable {
     let discountPercentage: String
     let image: String
     let sizes: [Size]
-    var id: UUID {
-        UUID()
-    }
     
     var onlyAvailable: [Size] {
         sizes.filter({ $0.available })
@@ -36,23 +33,11 @@ struct Product: Codable {
         case image
         case sizes
     }
-    
 }
 
-extension Product: Equatable {
-    static func == (lhs: Product, rhs: Product) -> Bool {
-        lhs.id == rhs.id
-    }
-}
-
-struct Size: Codable {
-    let available: Bool
-    let size: String
-    let sku: String
-}
-
-extension Size: Equatable {
-    static func ==(lhs: Size, rhs: Size) -> Bool {
-        lhs.sku == rhs.sku && lhs.size == rhs.size
+extension Product: Hashable {
+    func hash(into hasher: inout Hasher) {
+        let combine = "\(name.hashValue)\(image.hashValue)"
+        hasher.combine(combine)
     }
 }
