@@ -9,12 +9,16 @@ protocol HomeBusinessLogic {
     func viewDidLoad()
     func didAdd(_ product: Product, with size: Size)
     func payButtonDidTap()
+    func promotionSwitchChange(to isOn: Bool)
 }
 
 final class HomeInteractor: HomeBusinessLogic {
     private let presenter: HomePresentationLogic
     private let service: ProductServiceProtocol
     private var products: [Product] = []
+    private var promotionFilter: [Product] {
+        products.filter({$0.onSale})
+    }
     private(set) var cart = ShoppingCart(products: [:])
     
     init(
@@ -48,5 +52,13 @@ final class HomeInteractor: HomeBusinessLogic {
     
     func payButtonDidTap() {
         presenter.goToShoppingCart(with: cart)
+    }
+    
+    func promotionSwitchChange(to isOn: Bool) {
+        if isOn {
+            presenter.show(promotionFilter)
+        } else {
+            presenter.show(products)
+        }
     }
 }
