@@ -8,6 +8,7 @@
 protocol HomeBusinessLogic {
     func viewDidLoad()
     func didAdd(_ product: Product, with size: Size)
+    func payButtonDidTap()
 }
 
 final class HomeInteractor: HomeBusinessLogic {
@@ -43,5 +44,9 @@ final class HomeInteractor: HomeBusinessLogic {
     func didAdd(_ product: Product, with size: Size) {
         cart.add(product, with: size)
         presenter.updateCartQuantity(with: cart.quantity)
+    }
+    
+    func payButtonDidTap() {
+        presenter.goToShoppingCart(with: cart)
     }
 }

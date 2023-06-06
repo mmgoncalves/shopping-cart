@@ -12,6 +12,9 @@ struct ShoppingCart {
     var quantity: Int {
         products.reduce(0, {$0 + $1.value.quantity })
     }
+    var totalPrice: String {
+        "R$ 100,00"
+    }
     
     mutating func add(_ product: Product, with size: Size) {
         if var cartProduct = getCartProduct(from: product, with: size) {

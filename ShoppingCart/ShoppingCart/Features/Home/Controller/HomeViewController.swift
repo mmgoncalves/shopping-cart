@@ -10,6 +10,7 @@ import UIKit
 protocol HomeDisplayLogic: AnyObject {
     func show(_ products: [Product])
     func updateCartQuantity(with quantity: Int)
+    func goToShoppingCart(with shoppingCart: ShoppingCart)
     func startLoading()
     func stopLoading()
 }
@@ -74,20 +75,9 @@ final class HomeViewController: UIViewController {
         return collection
     }()
     
-    private lazy var payButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemGreen
-        let title = NSAttributedString(
-            string: "Pagar",
-            attributes: [
-                NSAttributedString.Key.font: UIFont.defaultFont(18)
-            ]
-        )
-        button.setAttributedTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8
+    private lazy var payButton: Button = {
+        let button = Button(title: "Pagar")
         button.addTarget(self, action: #selector(payButtonDidTap), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -107,6 +97,7 @@ final class HomeViewController: UIViewController {
     override func loadView() {
         super.loadView()
         navigationController?.setNavigationBarHidden(true, animated: false)
+        title = " "
         setupView()
     }
     
@@ -116,12 +107,11 @@ final class HomeViewController: UIViewController {
     }
     
     @objc private func promotionSwitchDidChange(_ sender: AnyObject) {
-        print("switch => ", promotionFilterSwitch.isOn)
         promotionFilterSwitch.largeContentTitle = "teste large title"
     }
     
     @objc private func payButtonDidTap(_ sender: AnyObject) {
-        print("Pay button =>")
+        interactor?.payButtonDidTap()
     }
 }
 
@@ -133,6 +123,10 @@ extension HomeViewController: HomeDisplayLogic {
     
     func updateCartQuantity(with quantity: Int) {
         cartView.update(numberOfProducts: quantity)
+    }
+    
+    func goToShoppingCart(with shoppingCart: ShoppingCart) {
+        router?.goToShoppingCart(shoppingCart: shoppingCart)
     }
 }
 
@@ -213,8 +207,7 @@ extension HomeViewController: ViewCode {
             payButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
             payButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             payButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            payButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25),
-            payButton.heightAnchor.constraint(equalToConstant: 50)
+            payButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25)
         ])
         
         let height = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
