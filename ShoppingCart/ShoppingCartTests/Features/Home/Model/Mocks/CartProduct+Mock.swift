@@ -8,7 +8,7 @@
 @testable import ShoppingCart
 
 extension CartProduct {
-    static func mock() -> CartProduct {
-        .init(product: .mock(), size: .mock(), quantity: 1)
+    static func mock(quantity: Int = 1) -> CartProduct {
+        .init(product: .mock(), size: .mock(), quantity: quantity)
     }
 }

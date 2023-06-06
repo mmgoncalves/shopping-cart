@@ -6,7 +6,7 @@
 //
 
 protocol ShoppingCartPresentationLogic {
-    func viewDidLoad(with shoppingCart: ShoppingCart)
+    func updateView(with shoppingCart: ShoppingCart)
 }
 
 final class ShoppingCartPresenter {
@@ -18,9 +18,10 @@ final class ShoppingCartPresenter {
 }
 
 extension ShoppingCartPresenter: ShoppingCartPresentationLogic {
-    func viewDidLoad(with shoppingCart: ShoppingCart) {
+    func updateView(with shoppingCart: ShoppingCart) {
         let total = shoppingCart.totalPrice
-        let products = shoppingCart.products.compactMap({$0.value})
+        var products = shoppingCart.cartProducts
+        products.sort(by: {$0.product.name < $1.product.name})
         view?.updateTotal(total)
         view?.show(products)
     }

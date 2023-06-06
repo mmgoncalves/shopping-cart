@@ -7,11 +7,13 @@
 
 protocol ShoppingCartBusinessLogic {
     func viewDidLoad()
+    func minusButtonDidTap(from cartProduct: CartProduct)
+    func plusButtonDidTap(from cartProduct: CartProduct)
 }
 
 final class ShoppingCartInteractor {
     private let presenter: ShoppingCartPresentationLogic
-    private let shoppingCart: ShoppingCart
+    private var shoppingCart: ShoppingCart
     
     init(presenter: ShoppingCartPresentationLogic, shoppingCart: ShoppingCart) {
         self.presenter = presenter
@@ -21,6 +23,21 @@ final class ShoppingCartInteractor {
 
 extension ShoppingCartInteractor: ShoppingCartBusinessLogic {
     func viewDidLoad() {
-        presenter.viewDidLoad(with: shoppingCart)
+        presenter.updateView(with: shoppingCart)
+    }
+    
+    func minusButtonDidTap(from cartProduct: CartProduct) {
+        if cartProduct.quantity == 1 {
+            shoppingCart.remove(cartProduct)
+        } else {
+            shoppingCart.increaseQuantity(of: cartProduct)
+        }
+        
+        presenter.updateView(with: shoppingCart)
+    }
+    
+    func plusButtonDidTap(from cartProduct: CartProduct) {
+        shoppingCart.increaseQuantity(of: cartProduct)
+        presenter.updateView(with: shoppingCart)
     }
 }

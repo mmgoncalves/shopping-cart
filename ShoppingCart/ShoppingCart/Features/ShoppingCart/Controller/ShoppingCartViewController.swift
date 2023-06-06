@@ -83,6 +83,16 @@ extension ShoppingCartViewController: ShoppingCartDisplayLogic {
     }
 }
 
+extension ShoppingCartViewController: ShoppingCartCollectionViewCellDelegate {
+    func minusButtonDidTap(from cartProduct: CartProduct) {
+        interactor?.minusButtonDidTap(from: cartProduct)
+    }
+    
+    func plusButtonDidTap(from cartProduct: CartProduct) {
+        interactor?.plusButtonDidTap(from: cartProduct)
+    }
+}
+
 extension ShoppingCartViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         products.count
@@ -96,7 +106,7 @@ extension ShoppingCartViewController: UICollectionViewDataSource {
         }
         
         let product = products[indexPath.row]
-        homeCollection.setup(cartproduct: product)
+        homeCollection.setup(cartProduct: product, delegate: self)
         return homeCollection
     }
 }

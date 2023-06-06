@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol ShoppingCartCollectionViewCellDelegate: AnyObject {
+    func minusButtonDidTap(from cartProduct: CartProduct)
+    func plusButtonDidTap(from cartProduct: CartProduct)
+}
+
 final class ShoppingCartCollectionViewCell: UICollectionViewCell {
     static let identifier = "ShoppingCartCollectionViewCell"
     
@@ -55,23 +60,40 @@ final class ShoppingCartCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    func setup(cartproduct: CartProduct) {
-        imageView.loadImage(from: cartproduct.product.image)
-        quantityView.update(cartproduct.quantity)
-        let sizeAndPrice = "\(cartproduct.size.size) - \(cartproduct.product.actualPrice)"
+    private var cartProduct: CartProduct?
+    private weak var delegate: ShoppingCartCollectionViewCellDelegate?
+    
+    func setup(cartProduct: CartProduct, delegate: ShoppingCartCollectionViewCellDelegate) {
+        self.cartProduct = cartProduct
+        self.delegate = delegate
+        imageView.loadImage(from: cartProduct.product.image)
+        quantityView.update(cartProduct.quantity)
+        let sizeAndPrice = "\(cartProduct.size.size) - \(cartProduct.product.actualPrice)"
         sizeAndPriceLabel.text = sizeAndPrice
-        nameLabel.text = cartproduct.product.name
+        nameLabel.text = cartProduct.product.name
         setupView()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cartProduct = nil
+        delegate = nil
+        imageView.image = imagePlaceholder
+        quantityView.prepareForReuse()
+        sizeAndPriceLabel.text = ""
+        nameLabel.text = ""
     }
 }
 
 extension ShoppingCartCollectionViewCell: QuantityViewDelegate {
     func minusButtonDidTap() {
-        
+        guard let cartProduct else { return }
+        delegate?.minusButtonDidTap(from: cartProduct)
     }
     
     func plusButtonDidTap() {
-        
+        guard let cartProduct else { return }
+        delegate?.plusButtonDidTap(from: cartProduct)
     }
 }
 
@@ -101,9 +123,5 @@ extension ShoppingCartCollectionViewCell: ViewCode {
             quantityView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
             quantityView.widthAnchor.constraint(equalToConstant: 90)
         ])
-    }
-    
-    func additionalConfiguration() {
-        
     }
 }

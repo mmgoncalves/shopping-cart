@@ -31,6 +31,19 @@ final class ShoppingCartTests: XCTestCase {
         XCTAssertEqual(sut.products.first?.value.quantity, 1)
     }
     
+    func testAddCartProduct() {
+        // - given
+        XCTAssertEqual(sut.products.count, 0)
+        let mock = CartProduct.mock(quantity: 2)
+        
+        // - when
+        sut.add(mock)
+        
+        // - then
+        XCTAssertEqual(sut.products.count, 1)
+        XCTAssertEqual(sut.products.first?.value.quantity, 2)
+    }
+    
     func testUpdateQuantity() {
         // - given
         XCTAssertEqual(sut.products.count, 0)
@@ -44,5 +57,56 @@ final class ShoppingCartTests: XCTestCase {
         // - then
         XCTAssertEqual(sut.products.count, 1)
         XCTAssertEqual(sut.products.first?.value.quantity, 2)
+    }
+    
+    func testTotal() {
+        // - given
+        
+        // - when
+        
+        // - when
+    }
+    
+    func testIncreaseCartProductQuantity() {
+        // - given
+        let mock = CartProduct.mock(quantity: 2)
+        sut.add(mock)
+        XCTAssertEqual(sut.products.count, 1)
+        XCTAssertEqual(sut.products.first?.value.quantity, 2)
+        
+        // - when
+        sut.increaseQuantity(of: mock)
+        
+        // - when
+        XCTAssertEqual(sut.products.count, 1)
+        XCTAssertEqual(sut.products.first?.value.quantity, 3)
+    }
+    
+    func testDecreaseCartProductQuantity() {
+        // - given
+        let mock = CartProduct.mock(quantity: 2)
+        sut.add(mock)
+        XCTAssertEqual(sut.products.count, 1)
+        XCTAssertEqual(sut.products.first?.value.quantity, 2)
+        
+        // - when
+        sut.decreaseQuantity(mock)
+        
+        // - when
+        XCTAssertEqual(sut.products.count, 1)
+        XCTAssertEqual(sut.products.first?.value.quantity, 1)
+    }
+    
+    func testRemoveProduct() {
+        // - given
+        let mock = CartProduct.mock()
+        sut.add(mock)
+        XCTAssertEqual(sut.products.count, 1)
+        
+        // - when
+        sut.remove(mock)
+        
+        // - when
+        XCTAssertEqual(sut.products.count, 0)
     }
 }

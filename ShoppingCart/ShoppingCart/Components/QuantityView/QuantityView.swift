@@ -67,7 +67,10 @@ final class QuantityView: UIView {
     
     func update(_ quantity: Int) {
         quantityLabel.text = "\(quantity)"
-        layoutIfNeeded()
+    }
+    
+    func prepareForReuse() {
+        quantityLabel.text = ""
     }
     
     @objc private func minusButtonDidTap(_ sender: AnyObject) {
