@@ -107,7 +107,7 @@ final class HomeViewController: UIViewController {
     }
     
     @objc private func promotionSwitchDidChange(_ sender: AnyObject) {
-        promotionFilterSwitch.largeContentTitle = "teste large title"
+        interactor?.promotionSwitchChange(to: promotionFilterSwitch.isOn)
     }
     
     @objc private func payButtonDidTap(_ sender: AnyObject) {
