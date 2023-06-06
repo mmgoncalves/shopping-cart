@@ -11,6 +11,7 @@ final class HomePresentationLogicMock: HomePresentationLogic {
     private(set) var viewDidLoadInvoked = false
     private(set) var showInvoked = false
     private(set) var updateCartQuantityInvoked = false
+    private(set) var goToShoppingCartInvoked = false
     
     func viewDidLoad() {
         viewDidLoadInvoked = true
@@ -22,5 +23,9 @@ final class HomePresentationLogicMock: HomePresentationLogic {
     
     func updateCartQuantity(with quantity: Int) {
         updateCartQuantityInvoked = true
+    }
+    
+    func goToShoppingCart(with shoppingCart: ShoppingCart) {
+        goToShoppingCartInvoked = true
     }
 }

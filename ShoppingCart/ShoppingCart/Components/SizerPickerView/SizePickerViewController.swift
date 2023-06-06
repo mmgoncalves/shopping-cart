@@ -31,20 +31,9 @@ final class SizePickerViewController: UIViewController {
         return picker
     }()
     
-    private lazy var confirmButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemGreen
-        let title = NSAttributedString(
-            string: "Comfirmar",
-            attributes: [
-                NSAttributedString.Key.font: UIFont.defaultFont(18)
-            ]
-        )
-        button.setAttributedTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8
+    private lazy var confirmButton: Button = {
+        let button = Button(title: "Confirmar")
         button.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     

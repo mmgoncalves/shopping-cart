@@ -9,6 +9,7 @@ protocol HomePresentationLogic {
     func viewDidLoad()
     func show(_ products: [Product])
     func updateCartQuantity(with quantity: Int)
+    func goToShoppingCart(with shoppingCart: ShoppingCart)
 }
 
 final class HomePresenter: HomePresentationLogic {
@@ -29,5 +30,9 @@ final class HomePresenter: HomePresentationLogic {
     
     func updateCartQuantity(with quantity: Int) {
         view?.updateCartQuantity(with: quantity)
+    }
+    
+    func goToShoppingCart(with shoppingCart: ShoppingCart) {
+        view?.goToShoppingCart(with: shoppingCart)
     }
 }
