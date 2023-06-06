@@ -16,7 +16,8 @@ struct ShoppingCart {
         products.reduce(0, {$0 + $1.value.quantity })
     }
     var totalPrice: String {
-        "R$ 100,00"
+        let total = products.reduce(0, {$0 + ($1.value.product.actualPrice.doubleValue * Double($1.value.quantity)) })
+        return total.currencyFormat
     }
     
     mutating func add(_ product: Product, with size: Size) {

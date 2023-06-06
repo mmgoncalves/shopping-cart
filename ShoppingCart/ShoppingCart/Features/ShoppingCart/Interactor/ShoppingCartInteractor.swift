@@ -30,7 +30,7 @@ extension ShoppingCartInteractor: ShoppingCartBusinessLogic {
         if cartProduct.quantity == 1 {
             shoppingCart.remove(cartProduct)
         } else {
-            shoppingCart.increaseQuantity(of: cartProduct)
+            shoppingCart.decreaseQuantity(cartProduct)
         }
         
         presenter.updateView(with: shoppingCart)

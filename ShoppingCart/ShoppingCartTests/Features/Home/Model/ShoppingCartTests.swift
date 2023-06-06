@@ -61,10 +61,15 @@ final class ShoppingCartTests: XCTestCase {
     
     func testTotal() {
         // - given
+        XCTAssertEqual(sut.totalPrice, "R$ 0,00")
+        let mock = CartProduct.mock(quantity: 3)
         
         // - when
+        sut.add(mock)
+        sut.decreaseQuantity(mock)
         
-        // - when
+        // - then
+        XCTAssertEqual(sut.totalPrice, "R$ 180,00")
     }
     
     func testIncreaseCartProductQuantity() {
@@ -77,7 +82,7 @@ final class ShoppingCartTests: XCTestCase {
         // - when
         sut.increaseQuantity(of: mock)
         
-        // - when
+        // - then
         XCTAssertEqual(sut.products.count, 1)
         XCTAssertEqual(sut.products.first?.value.quantity, 3)
     }
@@ -92,7 +97,7 @@ final class ShoppingCartTests: XCTestCase {
         // - when
         sut.decreaseQuantity(mock)
         
-        // - when
+        // - then
         XCTAssertEqual(sut.products.count, 1)
         XCTAssertEqual(sut.products.first?.value.quantity, 1)
     }
@@ -106,7 +111,7 @@ final class ShoppingCartTests: XCTestCase {
         // - when
         sut.remove(mock)
         
-        // - when
+        // - then
         XCTAssertEqual(sut.products.count, 0)
     }
 }
