@@ -1,5 +1,5 @@
 //
-//  LoadingView.swift
+//  UIKitLoadingView.swift
 //  ShoppingCart
 //
 //  Created by Mateus Marques on 02/06/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LoadingView: UIView {
+final class UIKitLoadingView: UIView {
     private lazy var loadingView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.tintColor = .systemGreen
@@ -21,7 +21,7 @@ final class LoadingView: UIView {
     }
 }
 
-extension LoadingView: ViewCode {
+extension UIKitLoadingView: ViewCode {
     func setupViewHierarchy() {
         addSubview(loadingView)
     }

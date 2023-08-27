@@ -1,5 +1,5 @@
 //
-//  SizePickerViewController.swift
+//  UIKitSizePickerViewController.swift
 //  ShoppingCart
 //
 //  Created by Mateus Marques on 05/06/23.
@@ -7,11 +7,7 @@
 
 import UIKit
 
-protocol SizePickerDelegate: AnyObject {
-    func didSelect(_ size: Size, from product: Product)
-}
-
-final class SizePickerViewController: UIViewController {
+final class UIKitSizePickerViewController: UIViewController {
     // MARK: - Properties
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -31,8 +27,8 @@ final class SizePickerViewController: UIViewController {
         return picker
     }()
     
-    private lazy var confirmButton: CustomButton = {
-        let button = CustomButton(title: "Confirmar")
+    private lazy var confirmButton: UIKitButton = {
+        let button = UIKitButton(title: "Confirmar")
         button.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -66,7 +62,7 @@ final class SizePickerViewController: UIViewController {
     }
 }
 
-extension SizePickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension UIKitSizePickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
             1
     }
@@ -86,7 +82,7 @@ extension SizePickerViewController: UIPickerViewDataSource, UIPickerViewDelegate
     }
 }
 
-extension SizePickerViewController: ViewCode {
+extension UIKitSizePickerViewController: ViewCode {
     func setupViewHierarchy() {
         view.addSubview(titleLabel)
         view.addSubview(sizePickerView)

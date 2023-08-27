@@ -38,7 +38,7 @@ struct AmountView_Previews: PreviewProvider {
         AmountView(
             regularPrice: "R$100,00",
             actualPrice: "R$200,00",
-            onSale: false
+            onSale: true
         )
     }
 }

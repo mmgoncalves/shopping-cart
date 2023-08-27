@@ -1,5 +1,5 @@
 //
-//  SizeListView.swift
+//  UIKitSizeListView.swift
 //  ShoppingCart
 //
 //  Created by Mateus Marques on 03/06/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SizeListView: UIView {
+final class UIKitSizeListView: UIView {
     private lazy var sizeListLabel: UILabel = {
         let label = UILabel()
         label.font = .defaultFont(12)
@@ -27,7 +27,7 @@ final class SizeListView: UIView {
     }
 }
 
-extension SizeListView: ViewCode {
+extension UIKitSizeListView: ViewCode {
     func setupViewHierarchy() {
         addSubview(sizeListLabel)
     }

@@ -1,5 +1,5 @@
 //
-//  CartView.swift
+//  UIKitCartView.swift
 //  ShoppingCart
 //
 //  Created by Mateus Marques on 03/06/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CartView: UIView {
+final class UIKitCartView: UIView {
     
     // MARK: - Properties
     private lazy var cartEmptyImage: UIImage? = {
@@ -76,7 +76,7 @@ final class CartView: UIView {
     }
 }
 
-extension CartView: ViewCode {
+extension UIKitCartView: ViewCode {
     func setupViewHierarchy() {
         addSubview(cartIcon)
         addSubview(badgeContentView)

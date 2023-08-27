@@ -1,5 +1,5 @@
 //
-//  CustomButton.swift
+//  UIKitButton.swift
 //  ShoppingCart
 //
 //  Created by Mateus Marques on 05/06/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CustomButton: UIButton {
+final class UIKitButton: UIButton {
     private var title: String
     
     init(title: String) {
@@ -22,7 +22,7 @@ final class CustomButton: UIButton {
     }
 }
 
-extension CustomButton: ViewCode {
+extension UIKitButton: ViewCode {
     func setupViewHierarchy() {
         
     }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SizePickerDelegate: AnyObject {
+    func didSelect(_ size: Size, from product: Product)
+}
+
 protocol HomeDisplayLogic: AnyObject {
     func show(_ products: [Product])
     func updateCartQuantity(with quantity: Int)
@@ -57,8 +61,8 @@ final class HomeViewController: UIViewController {
         return promotionFilter
     }()
     
-    private lazy var cartView: CartView = {
-        let cart = CartView()
+    private lazy var cartView: UIKitCartView = {
+        let cart = UIKitCartView()
         cart.translatesAutoresizingMaskIntoConstraints = false
         return cart
     }()
@@ -75,8 +79,8 @@ final class HomeViewController: UIViewController {
         return collection
     }()
     
-    private lazy var payButton: CustomButton = {
-        let button = CustomButton(title: "Pagar")
+    private lazy var payButton: UIKitButton = {
+        let button = UIKitButton(title: "Pagar")
         button.addTarget(self, action: #selector(payButtonDidTap), for: .touchUpInside)
         return button
     }()

@@ -10,7 +10,7 @@ import UIKit
 extension UIViewController {
     
     func startLoading() {
-        let loadingView = LoadingView()
+        let loadingView = UIKitLoadingView()
         view.addSubview(loadingView)
         view.bringSubviewToFront(loadingView)
         loadingView.frame = view.frame
@@ -18,6 +18,6 @@ extension UIViewController {
     }
     
     func stopLoading() {
-        view.subviews.first(where: {$0 is LoadingView})?.removeFromSuperview()
+        view.subviews.first(where: {$0 is UIKitLoadingView})?.removeFromSuperview()
     }
 }

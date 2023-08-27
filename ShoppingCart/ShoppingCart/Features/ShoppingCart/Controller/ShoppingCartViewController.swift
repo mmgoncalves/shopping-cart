@@ -36,8 +36,8 @@ final class ShoppingCartViewController: UIViewController {
         return label
     }()
     
-    private lazy var payButton: CustomButton = {
-        let button = CustomButton(title: "Pagar")
+    private lazy var payButton: UIKitButton = {
+        let button = UIKitButton(title: "Pagar")
         button.addTarget(self, action: #selector(payButtonDidTap), for: .touchUpInside)
         return button
     }()

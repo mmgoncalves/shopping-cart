@@ -1,5 +1,5 @@
 //
-//  DiscountView.swift
+//  UIKitDiscountView.swift
 //  ShoppingCart
 //
 //  Created by Mateus Marques on 02/06/23.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DiscountView: UIView {
+final class UIKitDiscountView: UIView {
     
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -36,7 +36,7 @@ final class DiscountView: UIView {
     }
 }
 
-extension DiscountView: ViewCode {
+extension UIKitDiscountView: ViewCode {
     func setupViewHierarchy() {
         addSubview(contentView)
         contentView.addSubview(discountLabel)

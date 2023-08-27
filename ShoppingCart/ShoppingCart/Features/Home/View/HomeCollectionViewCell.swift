@@ -50,8 +50,8 @@ final class HomeCollectionViewCell: UICollectionViewCell {
         return addButton
     }()
     
-    private lazy var discountView: DiscountView = {
-        let view = DiscountView()
+    private lazy var discountView: UIKitDiscountView = {
+        let view = UIKitDiscountView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -62,8 +62,8 @@ final class HomeCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    private lazy var sizeListView: SizeListView = {
-        let view = SizeListView()
+    private lazy var sizeListView: UIKitSizeListView = {
+        let view = UIKitSizeListView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
