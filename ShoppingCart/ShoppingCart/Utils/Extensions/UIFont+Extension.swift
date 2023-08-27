@@ -6,9 +6,16 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension UIFont {
     static func defaultFont(_ size: CGFloat = 14) -> UIFont {
         UIFont(name: "arial", size: size)!
+    }
+}
+
+extension Font {
+    static func defaultFont(_ size: CGFloat = 14) -> Font {
+        Font.custom("arial", size: size)
     }
 }

@@ -75,8 +75,8 @@ final class HomeViewController: UIViewController {
         return collection
     }()
     
-    private lazy var payButton: Button = {
-        let button = Button(title: "Pagar")
+    private lazy var payButton: CustomButton = {
+        let button = CustomButton(title: "Pagar")
         button.addTarget(self, action: #selector(payButtonDidTap), for: .touchUpInside)
         return button
     }()

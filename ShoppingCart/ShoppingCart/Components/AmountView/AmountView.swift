@@ -2,90 +2,43 @@
 //  AmountView.swift
 //  ShoppingCart
 //
-//  Created by Mateus Marques on 02/06/23.
+//  Created by Mateus Marques on 26/08/23.
 //
 
-import UIKit
+import SwiftUI
 
-final class AmountView: UIView {
+struct AmountView: View {
+    let regularPrice: String
+    let actualPrice: String
+    let onSale: Bool
     
-    private lazy var iconImageView: UIImageView = {
-        let image = UIImage(systemName: "tag.square")
-        let imageView = UIImageView(image: image)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private lazy var priceContentStackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 1
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var actualPriceLabel: UILabel = {
-        let label = UILabel()
-        label.font = .defaultFont()
-        label.textColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var regularPriceLabel: UILabel = {
-        let label = UILabel()
-        label.font = .defaultFont(12)
-        label.textColor = .lightGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    func setup(regularPrice: String, actualPrice: String, onSale: Bool) {
-        actualPriceLabel.text = actualPrice
-        regularPriceLabel.isHidden = !onSale
-        if onSale {
-            let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: regularPrice)
-            attributeString.addAttribute(
-                NSAttributedString.Key.strikethroughStyle,
-                value: 2,
-                range: NSRange(location: 0, length: attributeString.length)
-            )
-            regularPriceLabel.attributedText = attributeString
+    var body: some View {
+        LazyHStack(spacing: 5) {
+            Image(systemName: "tag.square")
+                .resizable()
+                .foregroundColor(.init(uiColor: .systemBlue))
+                .frame(width: 33, height: 33)
+            LazyVStack(alignment: .leading) {
+                Text(actualPrice)
+                    .font(.defaultFont())
+                    .foregroundColor(.init(uiColor: .darkGray))
+                if onSale {
+                    Text(regularPrice)
+                        .font(.defaultFont(12))
+                        .foregroundColor(.init(uiColor: .lightGray))
+                        .strikethrough()
+                }
+            }
         }
-        setupView()
-    }
-    
-    func prepareForReuse() {
-        actualPriceLabel.text = ""
-        regularPriceLabel.text = ""
     }
 }
 
-extension AmountView: ViewCode {
-    func setupViewHierarchy() {
-        addSubview(iconImageView)
-        addSubview(priceContentStackView)
-        priceContentStackView.addArrangedSubview(actualPriceLabel)
-        priceContentStackView.addArrangedSubview(regularPriceLabel)
-    }
-    
-    func setupConstraints() {
-        NSLayoutConstraint.activate([
-            iconImageView.topAnchor.constraint(equalTo: topAnchor),
-            iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            iconImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 33),
-            iconImageView.heightAnchor.constraint(equalToConstant: 33),
-            
-            priceContentStackView.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 2),
-            priceContentStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            priceContentStackView.heightAnchor.constraint(equalTo: iconImageView.heightAnchor),
-            priceContentStackView.centerYAnchor.constraint(equalTo: iconImageView.centerYAnchor),
-            
-            actualPriceLabel.heightAnchor.constraint(equalToConstant: 16),
-            
-            regularPriceLabel.heightAnchor.constraint(equalToConstant: 14),
-        ])
+struct AmountView_Previews: PreviewProvider {
+    static var previews: some View {
+        AmountView(
+            regularPrice: "R$100,00",
+            actualPrice: "R$200,00",
+            onSale: false
+        )
     }
 }

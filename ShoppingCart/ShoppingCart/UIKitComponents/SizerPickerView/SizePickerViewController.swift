@@ -31,8 +31,8 @@ final class SizePickerViewController: UIViewController {
         return picker
     }()
     
-    private lazy var confirmButton: Button = {
-        let button = Button(title: "Confirmar")
+    private lazy var confirmButton: CustomButton = {
+        let button = CustomButton(title: "Confirmar")
         button.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
         return button
     }()

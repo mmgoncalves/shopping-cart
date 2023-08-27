@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 protocol HomeRoutingLogic {
     func showSizePicker(with product: Product, delegate: SizePickerDelegate)
@@ -20,17 +21,26 @@ final class HomeRouter: HomeRoutingLogic {
     }
     
     func showSizePicker(with product: Product, delegate: SizePickerDelegate) {
-        let pickerView = SizePickerViewController(product: product, delegate: delegate)
-        pickerView.modalPresentationStyle = .formSheet
-        if let sheet = pickerView.sheetPresentationController {
+        let pickerView = SizerPickerView(product: product) { [weak self, product, delegate] size in
+            delegate.didSelect(size, from: product)
+            self?.viewController?.presentedViewController?.dismiss(animated: true)
+        }
+        let host = UIHostingController(rootView: pickerView)
+        host.modalPresentationStyle = .formSheet
+        if let sheet = host.sheetPresentationController {
             sheet.detents = [.medium()]
         }
-        viewController?.present(pickerView, animated: true)
+        host.view.backgroundColor = .white
+        viewController?.present(host, animated: true)
     }
     
     func goToShoppingCart(shoppingCart: ShoppingCart) {
         let shoppingCartFactory = ShoppingCartFactory()
         let shoppingCartViewController = shoppingCartFactory.build(with: shoppingCart)
         viewController?.navigationController?.pushViewController(shoppingCartViewController, animated: true)
+    }
+    
+    private func dismissCurrentVC() {
+        viewController?.presentedViewController?.dismiss(animated: true)
     }
 }

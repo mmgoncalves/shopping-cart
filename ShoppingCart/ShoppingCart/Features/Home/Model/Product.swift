@@ -12,6 +12,7 @@ struct ProductResponse: Codable {
 }
 
 struct Product: Codable {
+    var id: UUID = .init()
     let name: String
     let onSale: Bool
     let regularPrice: String
@@ -33,9 +34,24 @@ struct Product: Codable {
         case image
         case sizes
     }
+    
+    init(id: UUID = .init(), name: String, onSale: Bool, regularPrice: String, actualPrice: String, discountPercentage: String, image: String, sizes: [Size]) {
+        self.id = id
+        self.name = name
+        self.onSale = onSale
+        self.regularPrice = regularPrice
+        self.actualPrice = actualPrice
+        self.discountPercentage = discountPercentage
+        self.image = image
+        self.sizes = sizes
+    }
 }
 
 extension Product: Hashable {
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     func hash(into hasher: inout Hasher) {
         let combine = "\(name.hashValue)\(image.hashValue)"
         hasher.combine(combine)

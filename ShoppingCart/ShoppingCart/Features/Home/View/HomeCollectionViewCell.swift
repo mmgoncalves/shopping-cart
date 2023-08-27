@@ -56,8 +56,8 @@ final class HomeCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    private lazy var amountView: AmountView = {
-        let view = AmountView()
+    private lazy var amountView: UIKitAmountView = {
+        let view = UIKitAmountView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
