@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct AmountView: View {
-    let regularPrice: String
-    let actualPrice: String
-    let onSale: Bool
+    let product: Product
     
     var body: some View {
         LazyHStack(spacing: 5) {
@@ -19,11 +17,11 @@ struct AmountView: View {
                 .foregroundColor(.init(uiColor: .systemBlue))
                 .frame(width: 33, height: 33)
             LazyVStack(alignment: .leading) {
-                Text(actualPrice)
+                Text(product.actualPrice)
                     .font(.defaultFont())
                     .foregroundColor(.init(uiColor: .darkGray))
-                if onSale {
-                    Text(regularPrice)
+                if product.onSale {
+                    Text(product.regularPrice)
                         .font(.defaultFont(12))
                         .foregroundColor(.init(uiColor: .lightGray))
                         .strikethrough()
@@ -36,9 +34,7 @@ struct AmountView: View {
 struct AmountView_Previews: PreviewProvider {
     static var previews: some View {
         AmountView(
-            regularPrice: "R$100,00",
-            actualPrice: "R$200,00",
-            onSale: true
+            product: .mock
         )
     }
 }

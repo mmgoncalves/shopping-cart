@@ -1,5 +1,5 @@
 //
-//  HomeCollectionViewCell.swift
+//  UIKitHomeCollectionViewCell.swift
 //  ShoppingCart
 //
 //  Created by Mateus Marques on 01/06/23.
@@ -11,8 +11,8 @@ protocol HomeCollectionViewCellDelegate: AnyObject {
     func didAdd(_ product: Product)
 }
 
-final class HomeCollectionViewCell: UICollectionViewCell {
-    static let identifier = "HomeCollectionViewCell"
+final class UIKitHomeCollectionViewCell: UICollectionViewCell {
+    static let identifier = "UIKitHomeCollectionViewCell"
     
     // MARK: - Properties
     private lazy var titleLabel: UILabel = {
@@ -109,7 +109,7 @@ final class HomeCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension HomeCollectionViewCell: ViewCode {
+extension UIKitHomeCollectionViewCell: ViewCode {
     func setupViewHierarchy() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(imageView)

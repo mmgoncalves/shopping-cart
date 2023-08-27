@@ -152,7 +152,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let homeCollection = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell else {
+        guard let homeCollection = collectionView.dequeueReusableCell(withReuseIdentifier: UIKitHomeCollectionViewCell.identifier, for: indexPath) as? UIKitHomeCollectionViewCell else {
             let cell = UICollectionViewCell()
             cell.backgroundColor = .blue
             return cell
@@ -223,8 +223,8 @@ extension HomeViewController: ViewCode {
         view.backgroundColor = .white
         
         collectionView.register(
-            HomeCollectionViewCell.self,
-            forCellWithReuseIdentifier: HomeCollectionViewCell.identifier
+            UIKitHomeCollectionViewCell.self,
+            forCellWithReuseIdentifier: UIKitHomeCollectionViewCell.identifier
         )
 
         collectionView.dataSource = self
