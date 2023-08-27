@@ -5,13 +5,14 @@
 //  Created by Mateus Marques on 31/05/23.
 //
 
+import Combine
 import Foundation
 
 struct ProductResponse: Codable {
     let products: [Product]
 }
 
-struct Product: Codable {
+class Product: Codable, ObservableObject, Identifiable {
     var id: UUID = .init()
     let name: String
     let onSale: Bool
